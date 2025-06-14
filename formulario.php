@@ -58,8 +58,8 @@
 <body>
 
     <div class="container">
-        <h1>¡Bienvenido a mi sitio web!</h1>
-        <p>Esta es una página de inicio bonita creada con PHP, HTML y CSS.</p>
+        <h1>Formulario de registro de TalentoTech</h1>
+        <p>Para ingresar al formulario de click en el botón</p>
         <a href="form_2.php" class="button">Comenzar</a>
     </div>
 

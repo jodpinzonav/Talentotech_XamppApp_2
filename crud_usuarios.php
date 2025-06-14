@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "test";
+$dbname = "dbtest_usuarios";
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
         $nombre = $_POST["nombre"];
         $correo = $_POST["correo"];
-        $sql = "INSERT INTO usuarios (nombre, correo) VALUES ('$nombre', '$correo')";
+        $sql = "INSERT INTO tabla_usuarios (nombre, correo) VALUES ('$nombre', '$correo')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Nuevo registro creado con éxito";
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_POST["id"];
         $nombre = $_POST["nombre"];
         $correo = $_POST["correo"];
-        $sql = "UPDATE usuarios SET nombre='$nombre', correo='$correo' WHERE id=$id";
+        $sql = "UPDATE tabla_usuarios SET nombre='$nombre', correo='$correo' WHERE id=$id";
 
         if ($conn->query($sql) === TRUE) {
             echo "Registro actualizado con éxito";
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } elseif (isset($_GET["borrar"])) {
 
     $id = $_GET["borrar"];
-    $sql = "DELETE FROM usuarios WHERE id=$id";
+    $sql = "DELETE FROM tabla_usuarios WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
         echo "Registro borrado con éxito";
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-$sql = "SELECT id, nombre, correo FROM usuarios";
+$sql = "SELECT id, nombre, correo FROM tabla_usuarios";
 $result = $conn->query($sql);
 ?>
 
@@ -59,7 +59,7 @@ $result = $conn->query($sql);
 <html>
 
 <head>
-    <title>CRUD Usuarios</title>
+    <title>CRUD tabla_usuarios</title>
     <!-- Aca debe ir el <script></script> o el link a los estilos -->
 </head>
 
@@ -98,7 +98,7 @@ $result = $conn->query($sql);
     <?php
     if (isset($_GET["editar"])) {
         $id_editar = $_GET["editar"];
-        $sql_editar = "SELECT id, nombre, correo FROM usuarios WHERE id=$id_editar";
+        $sql_editar = "SELECT id, nombre, correo FROM tabla_usuarios WHERE id=$id_editar";
         $result_editar = $conn->query($sql_editar);
         if ($result_editar->num_rows == 1) {
             $row_editar = $result_editar->fetch_assoc();
